@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📞 Phonio — Video Calling & Revalidation App
 
-## Getting Started
+Phonio is a simple web-based video calling solution powered by LiveKit, designed with minimal UI and essential features. It also includes a revalidation API to trigger server-side page regeneration in Next.js.
 
-First, run the development server:
+---
+
+## 🔗 Routes
+
+### `/sales-agent`
+- A dedicated page for sales agents to join ongoing video calls.
+- Includes basic audio/video mute/unmute controls.
+
+### `/api/revalidate`
+- Triggers a manual revalidation of a cloned page.
+- Forces Next.js to regenerate the page.
+- Logs the new server build time in the **server** and **client** console.
+
+### `/revalidate`
+- Triggers a manual revalidation of a cloned page.
+- Forces Next.js to regenerate the page.
+- Logs the new server build time in the **server** and **client** console and show it in UI.
+
+---
+
+## 📹 Video Call Features
+
+### Popup-based Video Call
+- Clicking a “Join Call” button anywhere on the site launches a **popup video call**.
+- The popup is **draggable** and **resizable**.
+- Supports **picture-in-picture (PiP)** mode, like Google Meet.
+
+### Sales Agent Page (`/sales-agent`)
+- A sales agent can join calls directly from this page.
+- Features include:
+  - **Mute/Unmute Audio**
+  - **Mute/Unmute Video**
+
+---
+
+## 🧑‍💻 Tech Stack
+
+- **WebRTC Video Calling**: [LiveKit Web SDK](https://docs.livekit.io/client-sdk-js/)
+- **Frontend**: JavaScript (no TypeScript)
+- **Framework**: Next.js (API routes, dynamic revalidation)
+
+---
+
+## 🌟 Bonus Features
+
+- Floating video window when user navigates away from the call (Google Meet-style PiP).
+- Basic error handling with UI feedback for connection issues.
+
+---
+
+## 🔁 Revalidation API
+
+- **Route**: `/api/revalidate`
+- **Purpose**: Force Next.js to rebuild a cloned page at runtime.
+- **Functionality**:
+  - Logs the server build time in the terminal after regeneration.
+  - Also logs the updated build time on the client side for visibility.
+
+---
+
+## 📝 Notes
+
+- No ringtone or complex call handling is included — focus is on simplicity and core features.
+- The app UI is intentionally minimal to focus on functionality over style.
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# .env
+LIVEKIT_API_KEY="your_livekit_api_key"
+LIVEKIT_API_SECRET="your_livekit_api_secret"
+NEXT_PUBLIC_LIVEKIT_URL="wss://your-livekit-instance.livekit.cloud"
+NEXT_PUBLIC_DOMAIN_URL="https://your-public-domain.com"
+```
