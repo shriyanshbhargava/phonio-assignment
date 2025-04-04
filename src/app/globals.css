@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "ppneuemontreal";
+  src: url("/public/assets/fonts/ppneuemontreal.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "ppneuemontreal", sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
