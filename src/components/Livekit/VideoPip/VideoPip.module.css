@@ -1,0 +1,202 @@
+.container {
+  position: fixed;
+  background: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100vw;
+  max-height: 100vh;
+  user-select: none;
+}
+
+.header {
+  background-color: #000000d3;
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: grab;
+  user-select: none;
+  min-height: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header:active {
+  cursor: grabbing;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.button {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.videoContainer {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.resizeHandle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  cursor: se-resize;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' stroke='%23666' stroke-width='2' fill='none'%3E%3Cpath d='M16 16L22 22M8 16L22 2M2 22L22 22L22 12'/%3E%3C/svg%3E");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: 10;
+  transition: opacity 0.2s;
+}
+
+.resizeHandle:hover {
+  opacity: 1;
+}
+
+/* LiveKit overrides */
+.controlBar {
+  position: absolute !important;
+  bottom: 0 !important;
+  width: 100% !important;
+}
+
+.participantTile {
+  max-height: 100%;
+}
+
+/* PiP styling */
+.pipMode {
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pipMode .header {
+  padding: 6px 10px;
+  min-height: 15px;
+}
+
+.pipMode .title {
+  font-size: 12px;
+}
+
+.pipMode .button {
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+.pipMode .resizeHandle {
+  width: 16px;
+  height: 16px;
+}
+
+.pipMode .videoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.pipMode video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-size: 14px;
+  color: #6c757d;
+  background: #f8f9fa;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container:not(.pipMode) {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+  
+  .title {
+    font-size: 13px;
+  }
+  
+  .button {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container:not(.pipMode) {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  
+  .header {
+    padding: 10px 14px;
+  }
+  
+  .title {
+    font-size: 12px;
+  }
+  
+  .pipMode {
+    width: 200px !important;
+    height: 150px !important; 
+    bottom: 60px !important;
+    right: 10px !important;
+  }
+  
+  .controlBar button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}

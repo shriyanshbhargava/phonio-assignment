@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "ppneuemontreal";
-  src: url("/public/assets/fonts/ppneuemontreal.otf") format("otf");
+  font-family: "PPNeueMontreal";
+  src: url("/assets/fonts/ppneuemontreal.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -9,7 +9,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "ppneuemontreal", sans-serif;
+  font-family: "PPNeueMontreal",Arial, sans-serif;
   color: #ffffff;
   overflow-x: hidden;
 }

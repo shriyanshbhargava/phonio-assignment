@@ -54,11 +54,15 @@
 
 .plusBtn {
   background: white;
+  font-size: 1rem;
   color: black;
   border: none;
   border-radius: 4px;
-  width: 2rem;
-  height: 2rem;
+  height: 2.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-weight: 500;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,16 +70,23 @@
 }
 
 /* Desktop Header */
+
 .desktopHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.75rem 2rem;
-  position: relative;
+  padding: 1rem 2rem;
+  padding-bottom: 5rem;
+  position: fixed;
   z-index: 10;
-  background-color: black;
   color: white;
   font-size: 1.25rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.834),
+    rgba(0, 0, 0, 0)
+  );
+  width: 100%;
 }
 
 .headerLeft {

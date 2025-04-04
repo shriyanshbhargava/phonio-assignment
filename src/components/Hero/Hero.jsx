@@ -12,13 +12,10 @@ export default function Hero() {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Set initial value
     handleResize();
 
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Clean up
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -30,7 +27,6 @@ export default function Hero() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
       {isMobile ? <MobileContent /> : <DesktopContent />}
 
       <div className={styles.background}>
@@ -38,7 +34,7 @@ export default function Hero() {
           projectId="UoU6tCsTzJZXfkwww1zf"
           scale={1}
           dpi={1.5}
-          fps={60}
+          fps={30}
           altText="Description of your scene"
           lazyLoad={false}
         />
@@ -82,49 +78,50 @@ function MobileContent() {
 function DesktopContent() {
   return (
     <>
-      <div className={styles.sidebarLeft}>
-        <div className={styles.sidebarSection}>
-          <p>Buttons</p>
-          <p>Components</p>
-          <p>Transitions</p>
-          <p>Animations</p>
-          <p>Loaders</p>
+      <div className={styles.desktopContainer}>
+        <div className={styles.sidebarLeft}>
+          <div className={styles.sidebarSection}>
+            <p>Buttons</p>
+            <p>Components</p>
+            <p>Transitions</p>
+            <p>Animations</p>
+            <p>Loaders</p>
+          </div>
+          <div className={styles.sidebarSection}>
+            <p>Documentation</p>
+            <p>Tools</p>
+            <p>References</p>
+            <p>Tutorials</p>
+          </div>
         </div>
-        <div className={styles.sidebarSection}>
-          <p>Documentation</p>
-          <p>Tools</p>
-          <p>References</p>
-          <p>Tutorials</p>
-        </div>
+
+        <main className={styles.desktopMain}>
+          <h1 className={styles.desktopHeroText}>
+            Start building websites
+            <br />
+            people remember.
+          </h1>
+
+          <div className={styles.ctaButtons}>
+            <button className={styles.memberBtn}>Become a member</button>
+            <button className={styles.aboutBtn}>
+              <div className={styles.avatarGroup}>
+                <div className={styles.avatar}></div>
+                <div className={styles.avatar2}></div>
+              </div>
+              About us
+            </button>
+          </div>
+
+          <p className={styles.desktopDescription}>
+            Osmo came from constantly digging through old projects wondering,
+            'How did I build that again?' It is basically our personal toolbox,
+            packed with components, techniques, tricks and tutorials—and it will
+            keep growing.
+          </p>
+
+        </main>
       </div>
-
-      <main className={styles.desktopMain}>
-        <h1 className={styles.desktopHeroText}>
-          Start building websites
-          <br />
-          people remember.
-        </h1>
-
-        <div className={styles.ctaButtons}>
-          <button className={styles.memberBtn}>Become a member</button>
-          <button className={styles.aboutBtn}>
-            <div className={styles.avatarGroup}>
-              <div className={styles.avatar}></div>
-              <div className={styles.avatar2}></div>
-            </div>
-            About us
-          </button>
-        </div>
-
-        <p className={styles.desktopDescription}>
-          Osmo came from constantly digging through old projects wondering, 'How
-          did I build that again?' It is basically our personal toolbox, packed
-          with components, techniques, tricks and tutorials—and it will keep
-          growing.
-        </p>
-
-        <div className={styles.launchingLabel}>Launching early 2025</div>
-      </main>
     </>
   );
 }

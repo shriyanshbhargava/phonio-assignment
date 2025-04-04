@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addPropertyControls, ControlType, RenderTarget } from "framer";
 
 /**
@@ -13,6 +13,7 @@ export default function UnicornStudioEmbed(props) {
   const scriptId = useRef(
     `unicorn-project-${Math.random().toString(36).substr(2, 9)}`
   );
+  const [jsonError, setJsonError] = useState(null);
 
   useEffect(() => {
     const isEditingOrPreviewing = ["CANVAS", "PREVIEW"].includes(
@@ -41,6 +42,9 @@ export default function UnicornStudioEmbed(props) {
     const initializeUnicornStudio = () => {
       if (props.projectJSON) {
         try {
+          // Validate JSON before using it
+          JSON.parse(props.projectJSON); // This will throw if invalid
+          
           // Create script element for JSON data
           const dataScript = document.createElement("script");
           dataScript.id = scriptId.current;
@@ -52,8 +56,12 @@ export default function UnicornStudioEmbed(props) {
             "data-us-project-src",
             `${scriptId.current}`
           );
+          
+          // Clear any previous errors
+          setJsonError(null);
         } catch (e) {
           console.error("Failed to parse project JSON:", e);
+          setJsonError(e.message);
           return;
         }
       } else if (props.projectId) {
@@ -81,7 +89,7 @@ export default function UnicornStudioEmbed(props) {
         );
         if (existingScene) {
           existingScene.destroy();
-        } else {
+        } else if (window.UnicornStudio.destroy) {
           window.UnicornStudio.destroy();
         }
         window.UnicornStudio.init().then((scenes) => {
@@ -93,6 +101,8 @@ export default function UnicornStudioEmbed(props) {
           if (ourScene) {
             sceneRef.current = ourScene;
           }
+        }).catch(err => {
+          console.error("Failed to initialize Unicorn Studio:", err);
         });
       }
     };
@@ -112,7 +122,7 @@ export default function UnicornStudioEmbed(props) {
       }
       const dataScript = document.getElementById(scriptId.current);
       if (dataScript && dataScript.parentElement) {
-        dataScript.parentElement(dataScript);
+        dataScript.parentElement.removeChild(dataScript);
       }
     };
   }, [props.projectId, props.projectJSON]);
@@ -141,6 +151,10 @@ export default function UnicornStudioEmbed(props) {
           <p style={{ fontSize: "1rem", color: "#EF4444" }}>
             No project ID, please export your scene and add its project ID in
             the detail panel.
+          </p>
+        ) : jsonError ? (
+          <p style={{ fontSize: "1rem", color: "#EF4444" }}>
+            JSON Error: {jsonError}
           </p>
         ) : (
           " "
@@ -175,6 +189,18 @@ export default function UnicornStudioEmbed(props) {
           {props.header}
         </h1>
       )}
+      {jsonError && (
+        <div style={{ 
+          padding: "12px", 
+          backgroundColor: "#FEF2F2", 
+          color: "#B91C1C",
+          border: "1px solid #F87171",
+          borderRadius: "4px",
+          margin: "8px"
+        }}>
+          JSON Error: {jsonError}
+        </div>
+      )}
     </div>
   );
 }
@@ -189,6 +215,7 @@ addPropertyControls(UnicornStudioEmbed, {
   projectJSON: {
     type: ControlType.String,
     title: "Project JSON",
+    displayTextArea: true,
   },
   scale: {
     type: ControlType.Number,
@@ -232,4 +259,3 @@ addPropertyControls(UnicornStudioEmbed, {
     defaultValue: false,
   },
 });
-

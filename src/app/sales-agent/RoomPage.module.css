@@ -1,0 +1,348 @@
+.pageContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh; /* Modern viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.backgroundAnimation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.joinContainer {
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.542);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.joinContainer h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+}
+
+.formInput {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #ff5722;
+  box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.2);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.formRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.formRow .formInput {
+  flex: 1;
+  min-width: 150px; /* Ensure inputs don't get too small */
+  margin-top: 0;
+}
+
+.shareButton {
+  padding: 8px 15px;
+  background-color: #000000cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  height: fit-content;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.shareButton:hover {
+  background-color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.buttonGroup {
+  margin-top: 15px;
+}
+
+.joinButton {
+  padding: 12px 20px;
+  background-color: #000000cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.joinButton:hover {
+  background-color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.joinButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.errorMessage {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.inCallContainer {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden; /* Prevent scrollbars on overflow */
+}
+
+.livekitContainer {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 10;
+}
+
+.videoGrid {
+  height: calc(100vh - var(--lk-control-bar-height));
+  height: calc(100dvh - var(--lk-control-bar-height)); /* Modern viewport height */
+  width: 100%;
+}
+
+/* Local class to target global classes */
+.participantStyleWrapper :global(.lk-participant-tile) {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+.controlBarWrapper :global(.lk-control-bar) {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+/* Large tablets and smaller laptops */
+@media (max-width: 992px) {
+  .joinContainer {
+    max-width: 450px;
+  }
+}
+
+/* Medium-sized tablets */
+@media (max-width: 768px) {
+  .joinContainer {
+    width: 95%;
+    padding: 20px;
+    max-width: 400px;
+  }
+  
+  .joinContainer h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .formGroup label {
+    font-size: 14px;
+  }
+  
+  .formInput {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .shareButton {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+  
+  .joinButton {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+  
+  /* Adjust video grid for better fit on tablets */
+  .videoGrid {
+    gap: 8px;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 600px) {
+  .joinContainer {
+    width: 92%;
+    padding: 18px;
+  }
+  
+  .formRow {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .formRow .formInput {
+    width: 100%;
+  }
+  
+  .shareButton {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .joinContainer {
+    padding: 15px;
+    width: 92%;
+    max-width: none;
+  }
+  
+  .joinContainer h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .formGroup label {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  
+  .formInput {
+    padding: 8px;
+    font-size: 13px;
+  }
+  
+  .joinButton {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  /* Ensure video controls are properly sized on mobile */
+  .controlBarWrapper :global(.lk-control-bar) {
+    padding: 8px 4px;
+  }
+  
+  .controlBarWrapper :global(.lk-button) {
+    padding: 6px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 360px) {
+  .joinContainer {
+    padding: 12px;
+    width: 94%;
+  }
+  
+  .joinContainer h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .formGroup {
+    margin-bottom: 12px;
+  }
+  
+  .formInput, .joinButton {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+/* Handle landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .joinContainer {
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 15px;
+  }
+  
+  .joinContainer h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .formGroup {
+    margin-bottom: 10px;
+  }
+  
+  /* Adjust video grid for landscape */
+  .videoGrid {
+    gap: 4px;
+  }
+}
+
+/* For high-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .joinContainer {
+    box-shadow: 0 0 15px rgba(0,0,0,0.12);
+  }
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .joinButton, .shareButton {
+    transition: background-color 0.1s;
+    transform: none !important;
+  }
+}

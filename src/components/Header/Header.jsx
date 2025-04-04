@@ -61,7 +61,7 @@ function DesktopHeader() {
       <nav className={styles.mainNav}>
         <ul>
           <li>
-            <a href="#">Home</a>
+           <u> <a href="#" className={styles.activeLink}>Home</a></u>
           </li>
           <li>
             <a href="#">Pricing</a>
