@@ -74,13 +74,12 @@ Phonio is a simple web-based video calling solution powered by LiveKit, designed
 ```bash
 npm install
 npm run dev
-
 ```
-# 🔐 LiveKit Credentials
+
+```bash
+# .env
 LIVEKIT_API_KEY="your_livekit_api_key"
 LIVEKIT_API_SECRET="your_livekit_api_secret"
-
-# 🌐 Public URLs
 NEXT_PUBLIC_LIVEKIT_URL="wss://your-livekit-instance.livekit.cloud"
 NEXT_PUBLIC_DOMAIN_URL="https://your-public-domain.com"
-
+```
